@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📚 Documentation
+    url: https://github.com/LouisMazel/relizy?tab=readme-ov-file
+    about: Check the official documentation before opening an issue
+  - name: 💬 Discussions
+    url: https://github.com/LouisMazel/relizy/discussions
+    about: Ask questions and discuss with the community
+  - name: 📝 Code of Conduct
+    url: https://github.com/LouisMazel/relizy/blob/main/.github/CODE_OF_CONDUCT.md
+    about: Read the code of conduct before opening an issue

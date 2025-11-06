@@ -1,0 +1,25 @@
+name: Build and Typecheck
+
+on:
+  pull_request:
+
+jobs:
+  build-and-typecheck:
+    name: build-and-typecheck
+    runs-on: ubuntu-latest
+
+    # env:
+    #   TEST_ENV: 'true'
+    #   CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js, pnpm and Nx cache
+        uses: ./.github/actions/setup
+
+      - name: Build packages
+        run: pnpm build
+
+      - name: Build docs
+        run: pnpm -F docs build
