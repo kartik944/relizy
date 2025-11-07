@@ -59,7 +59,7 @@ Three version management strategies are supported:
 2. **`selective`** (recommended) - Unified versioning but only packages with commits are bumped
 3. **`independent`** - Each package has its own independent version; root version stays separate
 
-Version mode is configured in `changelog.config.ts` under `monorepo.versionMode`.
+Version mode is configured in `relizy.config.ts` under `monorepo.versionMode`.
 
 ### Dependency Handling
 
@@ -72,7 +72,7 @@ Version mode is configured in `changelog.config.ts` under `monorepo.versionMode`
 
 - Uses [c12](https://github.com/unjs/c12) for config file discovery and loading
 - Supports multiple formats: `.ts`, `.js`, `.json`, `.yaml`, `.toml`
-- Multiple config files can coexist with pattern `<name>.config.<ext>` (e.g., `changelog.standalone.config.ts`)
+- Multiple config files can coexist with pattern `<name>.config.<ext>` (e.g., `relizy.standalone.config.ts`)
 - Config is loaded with `loadConfig()` and merged with defaults via `defu()`
 - The `--config` CLI flag specifies config name (without `.config` suffix)
 
