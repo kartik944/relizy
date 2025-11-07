@@ -3,7 +3,7 @@ import type { BumpResult, GitProviderOptions, PackageInfo, PostedRelease } from 
 import { logger } from '@maz-ui/node'
 import { formatJson } from '@maz-ui/utils'
 import { createGithubRelease } from 'changelogen'
-import { generateChangelog, getPackageCommits, getPackages, getRootPackage, isPrerelease, loadMonorepoConfig } from '../core'
+import { generateChangelog, getFirstCommit, getPackageCommits, getPackages, getRootPackage, isPrerelease, loadMonorepoConfig } from '../core'
 
 async function githubIndependentMode({
   config,
@@ -119,11 +119,13 @@ async function githubUnified({
   dryRun,
   rootPackage,
   fromTag,
+  oldVersion,
 }: {
   config: ResolvedChangelogMonorepoConfig
   dryRun: boolean
   rootPackage: PackageInfo
-  fromTag?: string
+  fromTag: string | undefined
+  oldVersion: string | undefined
 }) {
   const repoConfig = config.repo
 
@@ -138,19 +140,13 @@ async function githubUnified({
   }
 
   const to = config.templates.tagBody.replace('{{newVersion}}', rootPackage.version)
-  const from = fromTag
-
-  if (!from) {
-    logger.warn('No fromTag found for root package, skipping release')
-    return []
-  }
 
   const toTag = dryRun ? 'HEAD' : to
 
   const commits = await getPackageCommits({
     pkg: rootPackage,
     config,
-    from,
+    from: fromTag || getFirstCommit(config.cwd),
     to: toTag,
     changelog: true,
   })
@@ -160,7 +156,7 @@ async function githubUnified({
     pkg: rootPackage,
     commits,
     config,
-    from,
+    from: fromTag || oldVersion || 'v0.0.0',
     dryRun,
   })
 
@@ -187,7 +183,7 @@ async function githubUnified({
     logger.debug('Publishing release to GitHub...')
     await createGithubRelease({
       ...config,
-      from,
+      from: fromTag || oldVersion || 'v0.0.0',
       to,
       repo: repoConfig,
     }, release)
@@ -239,6 +235,7 @@ export async function github(options: Partial<GitProviderOptions> & { bumpResult
       dryRun,
       rootPackage,
       fromTag: options.bumpResult.fromTag,
+      oldVersion: options.bumpResult.oldVersion,
     })
   }
   catch (error) {

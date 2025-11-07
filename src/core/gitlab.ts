@@ -2,7 +2,7 @@ import type { ResolvedChangelogMonorepoConfig } from '../core'
 import type { BumpResult, GitProviderOptions, PackageInfo, PostedRelease } from '../types'
 import { execPromise, logger } from '@maz-ui/node'
 import { formatJson } from '@maz-ui/utils'
-import { generateChangelog, getPackageCommits, getPackages, getRootPackage, isPrerelease, loadMonorepoConfig } from '../core'
+import { generateChangelog, getFirstCommit, getPackageCommits, getPackages, getRootPackage, isPrerelease, loadMonorepoConfig } from '../core'
 
 export interface GitlabRelease {
   tag_name: string
@@ -218,26 +218,22 @@ async function gitlabUnified({
   dryRun,
   rootPackage,
   fromTag,
+  oldVersion,
 }: {
   config: ResolvedChangelogMonorepoConfig
   dryRun: boolean
   rootPackage: PackageInfo
-  fromTag?: string
+  fromTag: string | undefined
+  oldVersion: string | undefined
 }) {
   logger.debug(`GitLab token: ${config.tokens.gitlab ? '✓ provided' : '✗ missing'}`)
 
   const to = config.templates.tagBody.replace('{{newVersion}}', rootPackage.version)
-  const from = fromTag
-
-  if (!from) {
-    logger.warn('No fromTag found for root package, skipping release')
-    return []
-  }
 
   const commits = await getPackageCommits({
     pkg: rootPackage,
     config,
-    from,
+    from: fromTag || getFirstCommit(config.cwd),
     to,
     changelog: true,
   })
@@ -247,7 +243,7 @@ async function gitlabUnified({
     pkg: rootPackage,
     commits,
     config,
-    from,
+    from: fromTag || oldVersion || 'v0.0.0',
     dryRun,
   })
 
@@ -338,6 +334,7 @@ export async function gitlab(options: Partial<GitProviderOptions> & { bumpResult
       dryRun,
       rootPackage,
       fromTag: options.bumpResult.fromTag,
+      oldVersion: options.bumpResult.oldVersion,
     })
   }
   catch (error) {
