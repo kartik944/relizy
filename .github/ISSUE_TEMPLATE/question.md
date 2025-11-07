@@ -56,7 +56,7 @@ relizy release ...
 
 <!-- Have you checked the documentation? -->
 
-- [ ] I have checked the [official documentation](https://github.com/LouisMazel/relizy)
+- [ ] I have checked the [official documentation](https://louismazel.github.io/relizy)
 - [ ] I have searched existing issues
 - [ ] I have looked at the examples
 

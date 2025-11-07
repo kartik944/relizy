@@ -183,8 +183,9 @@ function getCommitBody(commit: GitCommit) {
     }
 
     const isFileLine = /^[AMDRC]\s+/.test(trimmedLine)
+    const R100 = /R100\s+/.test(trimmedLine)
 
-    return !isFileLine
+    return !isFileLine && !R100
   })
 
   if (contentLines.length === 0) {
