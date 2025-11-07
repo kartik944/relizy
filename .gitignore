@@ -1,3 +1,6 @@
 dist
 node_modules
 .env
+docs/.vitepress/cache
+docs/.vitepress/.temp
+.DS_Store
