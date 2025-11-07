@@ -9,7 +9,7 @@
   </p>
 </div>
 
-Seamless and automated release management with elegant changelog generation based on Conventional Commits, supporting both monorepos and single packages. Handles version bumping, changelog generation, Git tagging, and publishing to npm, GitHub & GitLab effortlessly.
+Seamless and automated release manager with elegant changelog generation based on Conventional Commits, supporting both monorepos and single packages. Handles version bumping, changelog generation, Git tagging, and publishing to npm, GitHub & GitLab effortlessly.
 
 ## 🎯 Why use this tool?
 
@@ -71,17 +71,17 @@ You can use any of these formats for your configuration file:
 
 **Examples:**
 
-- `changelog.config.ts` (TypeScript - recommended)
-- `changelog.config.js` (JavaScript)
-- `changelog.config.json` (JSON)
-- `changelog.config.yaml` (YAML)
+- `relizy.config.ts` (TypeScript - recommended)
+- `relizy.config.js` (JavaScript)
+- `relizy.config.json` (JSON)
+- `relizy.config.yaml` (YAML)
 
 ### Minimal Configuration Example
 
 **TypeScript/JavaScript** (recommended):
 
 ```typescript
-// changelog.config.ts
+// relizy.config.ts
 import { defineConfig } from 'relizy'
 
 export default defineConfig({
@@ -138,7 +138,7 @@ Executes the entire release workflow in one command:
 
 ```bash
 # Complete release
-relizy release --patch
+relizy release
 
 # Release with pre-release
 relizy release --prerelease --preid beta --tag beta
@@ -150,7 +150,7 @@ relizy release --prerelease --preid beta --suffix abc123
 relizy release --patch --no-push
 
 # Without GitHub/GitLab release creation
-relizy release --patch --no-release
+relizy release --patch --no-provider-release
 
 # Without npm publish
 relizy release --patch --no-publish
@@ -170,7 +170,7 @@ relizy release --patch --force
 All options from `bump`, `changelog`, `publish` and `provider-release` are available, and:
 
 - `--no-push` - Don't push changes and tags to remote
-- `--no-release` - Don't create GitHub/GitLab release
+- `--no-provider-release` - Don't create GitHub/GitLab release
 - `--no-publish` - Don't publish to npm
 - `--no-verify` - Skip git hooks during commit
 - `--no-commit` - Skip commit and tag creation
@@ -180,7 +180,7 @@ All options from `bump`, `changelog`, `publish` and `provider-release` are avail
 - `--force` - Force bump even without commits
 - `--yes` - Skip confirmation prompt
 - `--build-cmd <cmd>` - Command to build packages before publish
-- `--suffix <suffix>` - Custom suffix for prerelease versions (see [bump --suffix](#suffix))
+- `--suffix <suffix>` - Custom suffix for prerelease versions (see [bump --suffix](#--suffix))
 
 #### 2. `bump` - Update versions
 
@@ -387,8 +387,8 @@ Multiple ways to provide the token:
 - Command line option (`--token`)
 - Configuration file (see [tokens](#tokens) section)
 - Environment variables (checked in order):
-  - **GitHub:** `RELIZY_TOKENS_GITHUB`, `GITHUB_TOKEN`, `GH_TOKEN`
-  - **GitLab:** `RELIZY_TOKENS_GITLAB`, `GITLAB_TOKEN`, `GITLAB_API_TOKEN`, `CI_JOB_TOKEN`
+  - **GitHub:** `RELIZY_GITHUB_TOKEN`, `GITHUB_TOKEN`, `GH_TOKEN`
+  - **GitLab:** `RELIZY_GITLAB_TOKEN`, `GITLAB_TOKEN`, `GITLAB_API_TOKEN`, `CI_JOB_TOKEN`
 
 ### Global options
 
@@ -399,14 +399,14 @@ All commands support these global options:
 Use `--config` to specify a custom configuration file name (without the file extension):
 
 ```bash
-# Use default config (changelog.config.{ts,js,json,yaml,...})
+# Use default config (relizy.config.{ts,js,json,yaml,...})
 relizy bump --patch
 
-# Use custom config (changelog.standalone.config.{ts,js,json,yaml,...})
-relizy bump --config changelog.standalone --patch
+# Use custom config (relizy.standalone.config.{ts,js,json,yaml,...})
+relizy bump --config relizy.standalone --patch
 
-# Use another config (changelog.experimental.config.{ts,js,json,yaml,...})
-relizy release --config changelog.experimental --minor
+# Use another config (relizy.experimental.config.{ts,js,json,yaml,...})
+relizy release --config relizy.experimental --minor
 ```
 
 **Important:**
@@ -485,7 +485,7 @@ $ relizy bump --patch --log-level debug
 
 This tool extends [changelogen](https://github.com/unjs/changelogen) configuration with additional monorepo-specific options. Some options from changelogen are overridden to provide better monorepo support.
 
-Create a `changelog.config.ts` file at the root of your project:
+Create a `relizy.config.ts` file at the root of your project:
 
 ```typescript
 import { defineConfig } from 'relizy'
@@ -762,8 +762,8 @@ Authentication tokens for git providers (read from environment variables by defa
 
 **Environment variables checked (in order):**
 
-- GitHub: `RELIZY_TOKENS_GITHUB`, `GITHUB_TOKEN`, `GH_TOKEN`
-- GitLab: `RELIZY_TOKENS_GITLAB`, `GITLAB_TOKEN`, `GITLAB_API_TOKEN`, `CI_JOB_TOKEN`
+- GitHub: `RELIZY_GITHUB_TOKEN`, `GITHUB_TOKEN`, `GH_TOKEN`
+- GitLab: `RELIZY_GITLAB_TOKEN`, `GITLAB_TOKEN`, `GITLAB_API_TOKEN`, `CI_JOB_TOKEN`
 
 **Example:**
 
@@ -946,9 +946,9 @@ Create multiple configuration files following this naming pattern: `<name>.confi
 
 ```
 /
-├── changelog.config.ts              # Main config (core packages)
-├── changelog.standalone.config.ts   # Standalone utilities config
-└── changelog.experimental.config.json # Experimental packages config
+├── relizy.config.ts              # Main config (core packages)
+├── relizy.standalone.config.ts   # Standalone utilities config
+└── relizy.experimental.config.json # Experimental packages config
 ```
 
 You can use any supported format (`.ts`, `.js`, `.json`, `.yaml`, etc.) for each config file.
@@ -957,7 +957,7 @@ You can use any supported format (`.ts`, `.js`, `.json`, `.yaml`, etc.) for each
 
 This is a real-world example where you want to separate UI components (which should be released together) from standalone utilities (which can evolve independently).
 
-**`changelog.config.ts`** - Core UI packages (selective mode):
+**`relizy.config.ts`** - Core UI packages (selective mode):
 
 ```typescript
 import { defineConfig } from 'relizy'
@@ -983,7 +983,7 @@ export default defineConfig({
 })
 ```
 
-**`changelog.standalone.config.ts`** - Standalone utilities (independent mode):
+**`relizy.standalone.config.ts`** - Standalone utilities (independent mode):
 
 ```typescript
 import { defineConfig } from 'relizy'
@@ -1030,7 +1030,7 @@ pnpm relizy publish --config changelog.standalone
 
 ### Example: Different Registries
 
-**`changelog.config.ts`** - Public packages (npm registry):
+**`relizy.config.ts`** - Public packages (npm registry):
 
 ```typescript
 import { defineConfig } from 'relizy'
@@ -1074,7 +1074,7 @@ pnpm relizy publish --config changelog.private
 
 ### Best Practices
 
-1. **Use descriptive config names** - `changelog.standalone.config.ts` is better than `changelog.alt.config.ts`
+1. **Use descriptive config names** - `relizy.standalone.config.ts` is better than `relizy.alt.config.ts`
 2. **Document your workflow** - Add comments in your config files explaining the purpose
 3. **Keep it simple** - Don't create too many configs unless necessary
 4. **Version control** - Commit all config files to your repository
@@ -1082,7 +1082,7 @@ pnpm relizy publish --config changelog.private
 
 ### Tips
 
-- The default config is `changelog.config.<ext>` where c12 will auto-detect the extension (you don't need `--config` flag)
+- The default config is `relizy.config.<ext>` where c12 will auto-detect the extension (you don't need `--config` flag)
 - Config files must follow the pattern `<name>.config.<ext>` (c12 requirement)
 - Supported formats: `.ts`, `.js`, `.mjs`, `.cjs`, `.mts`, `.cts`, `.json`, `.jsonc`, `.json5`, `.yaml`, `.yml`, `.toml`
 - All commands support the `--config` option
@@ -1146,7 +1146,7 @@ If a `lerna.json` file exists at the root, the tool automatically updates its `v
 ### Migration from Lerna
 
 1. Keep your existing `lerna.json` (optional)
-2. Create a `changelog.config.ts` with your versioning strategy
+2. Create a `relizy.config.ts` with your versioning strategy
 3. Replace `lerna version` with `relizy release`
 4. Use your package manager to publish (e.g., `pnpm publish -r`)
 
