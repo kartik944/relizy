@@ -2,7 +2,7 @@
 
 # Interface: PublishResponse
 
-Defined in: [src/types.ts:39](https://github.com/LouisMazel/relizy/blob/00a8c3756a8e1c3653bf15cc6263696f62d24f68/src/types.ts#L39)
+Defined in: [src/types.ts:39](https://github.com/LouisMazel/relizy/blob/190a723062a3fdb8a34b2254faf889a750c01d70/src/types.ts#L39)
 
 ## Properties
 
@@ -10,4 +10,4 @@ Defined in: [src/types.ts:39](https://github.com/LouisMazel/relizy/blob/00a8c375
 
 > **publishedPackages**: [`PackageInfo`](PackageInfo.md)[]
 
-Defined in: [src/types.ts:40](https://github.com/LouisMazel/relizy/blob/00a8c3756a8e1c3653bf15cc6263696f62d24f68/src/types.ts#L40)
+Defined in: [src/types.ts:40](https://github.com/LouisMazel/relizy/blob/190a723062a3fdb8a34b2254faf889a750c01d70/src/types.ts#L40)

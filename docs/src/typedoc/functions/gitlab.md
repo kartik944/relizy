@@ -4,7 +4,7 @@
 
 > **gitlab**(`options`): `Promise`\<[`PostedRelease`](../interfaces/PostedRelease.md)[]\>
 
-Defined in: [src/core/gitlab.ts:296](https://github.com/LouisMazel/relizy/blob/00a8c3756a8e1c3653bf15cc6263696f62d24f68/src/core/gitlab.ts#L296)
+Defined in: [src/core/gitlab.ts:296](https://github.com/LouisMazel/relizy/blob/190a723062a3fdb8a34b2254faf889a750c01d70/src/core/gitlab.ts#L296)
 
 ## Parameters
 

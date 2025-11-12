@@ -2,7 +2,7 @@
 
 # Interface: TemplatesConfig
 
-Defined in: [src/types.ts:403](https://github.com/LouisMazel/relizy/blob/00a8c3756a8e1c3653bf15cc6263696f62d24f68/src/types.ts#L403)
+Defined in: [src/types.ts:403](https://github.com/LouisMazel/relizy/blob/190a723062a3fdb8a34b2254faf889a750c01d70/src/types.ts#L403)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/types.ts:403](https://github.com/LouisMazel/relizy/blob/00a8c37
 
 > `optional` **commitMessage**: `string`
 
-Defined in: [src/types.ts:407](https://github.com/LouisMazel/relizy/blob/00a8c3756a8e1c3653bf15cc6263696f62d24f68/src/types.ts#L407)
+Defined in: [src/types.ts:407](https://github.com/LouisMazel/relizy/blob/190a723062a3fdb8a34b2254faf889a750c01d70/src/types.ts#L407)
 
 Commit message template
 
@@ -20,7 +20,7 @@ Commit message template
 
 > `optional` **emptyChangelogContent**: `string`
 
-Defined in: [src/types.ts:419](https://github.com/LouisMazel/relizy/blob/00a8c3756a8e1c3653bf15cc6263696f62d24f68/src/types.ts#L419)
+Defined in: [src/types.ts:419](https://github.com/LouisMazel/relizy/blob/190a723062a3fdb8a34b2254faf889a750c01d70/src/types.ts#L419)
 
 Empty changelog content
 
@@ -30,7 +30,7 @@ Empty changelog content
 
 > `optional` **tagBody**: `string`
 
-Defined in: [src/types.ts:415](https://github.com/LouisMazel/relizy/blob/00a8c3756a8e1c3653bf15cc6263696f62d24f68/src/types.ts#L415)
+Defined in: [src/types.ts:415](https://github.com/LouisMazel/relizy/blob/190a723062a3fdb8a34b2254faf889a750c01d70/src/types.ts#L415)
 
 Not used with "independent" version mode
 
@@ -40,6 +40,6 @@ Not used with "independent" version mode
 
 > `optional` **tagMessage**: `string`
 
-Defined in: [src/types.ts:411](https://github.com/LouisMazel/relizy/blob/00a8c3756a8e1c3653bf15cc6263696f62d24f68/src/types.ts#L411)
+Defined in: [src/types.ts:411](https://github.com/LouisMazel/relizy/blob/190a723062a3fdb8a34b2254faf889a750c01d70/src/types.ts#L411)
 
 Tag message template

@@ -15,16 +15,10 @@ export default defineConfig({
   description: 'Seamless and automated release manager with elegant changelog generation based on Conventional Commits, supporting both monorepos and single packages. Handles version bumping, changelog generation, Git tagging, and publishing to npm, GitHub & GitLab effortlessly.',
 
   head: [
-    ['meta', { name: 'keywords', content: 'monorepo, release management, changelog, semantic versioning, npm publish, GitHub releases, GitLab releases, conventional commits, version bumping, changelogen' }],
     ['meta', { name: 'author', content: 'Louis Mazel' }],
-    ['meta', { property: 'og:type', content: 'website' }],
-    ['meta', { property: 'og:title', content: 'Relizy - Seamless and automated release manager' }],
-    ['meta', { property: 'og:description', content: 'Seamless and automated release manager with elegant changelog generation based on Conventional Commits, supporting both monorepos and single packages.' }],
-    ['meta', { property: 'og:image', content: 'https://raw.githubusercontent.com/LouisMazel/relizy/refs/heads/main/resources/social.jpg' }],
+    ['meta', { property: 'og:image', content: '/relizy/social.jpg' }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
-    ['meta', { name: 'twitter:title', content: 'Relizy - Seamless and automated release manager' }],
-    ['meta', { name: 'twitter:description', content: 'Seamless and automated release manager with elegant changelog generation based on Conventional Commits.' }],
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: 'https://raw.githubusercontent.com/LouisMazel/relizy/refs/heads/main/resources/logo.svg' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/relizy/logo.svg' }],
   ],
 
   appearance: true,
@@ -65,6 +59,7 @@ export default defineConfig({
     },
   },
 
+  // eslint-disable-next-line sonarjs/cognitive-complexity
   transformHead: ({ siteData, pageData, title, description, head }) => {
     const currentTitle = title ?? pageData.title ?? pageData.frontmatter.title ?? siteData.title
     const currentDescription = description ?? pageData.frontmatter.description ?? pageData.description ?? siteData.description
@@ -290,6 +285,13 @@ export default defineConfig({
     editLink: {
       pattern: 'https://github.com/LouisMazel/relizy/edit/main/docs/src/:path',
       text: 'Edit this page on GitHub',
+    },
+  },
+
+  vite: {
+    build: {
+      target: 'es2022',
+      minify: 'esbuild',
     },
   },
 })
