@@ -33,10 +33,10 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Build Packages
-        run: pnpm build:packages
+        run: pnpm build
 
       - name: Linters
-        run: pnpm lint:all
+        run: pnpm lint
 
       - name: Test units
         run: pnpm test:unit:coverage
