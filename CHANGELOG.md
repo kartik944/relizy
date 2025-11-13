@@ -1,5 +1,49 @@
 # Changelog
 
+## v0.2.2
+
+[compare changes](https://github.com/LouisMazel/relizy/compare/v0.2.2-beta.1...v0.2.2)
+
+### 🩹 Fixes
+
+- Changelog title and compare link generation ([690dcaf](https://github.com/LouisMazel/relizy/commit/690dcaf))
+- Handle prerelease version preid changes correctly ([31ab35e](https://github.com/LouisMazel/relizy/commit/31ab35e))
+
+  When changing prerelease preid (e.g. alpha → beta), the function was
+  incorrectly detecting the release type from commits and bumping the
+  version (e.g. 1.0.0-alpha.5 → 1.1.0-beta.0 instead of 1.0.0-beta.0).
+  Now it correctly returns 'prerelease' to keep the version in the same
+  release line while only updating the preid identifier.
+
+- Changelog title and compare link generation ([9b8fcfc](https://github.com/LouisMazel/relizy/commit/9b8fcfc))
+- Handle prerelease version preid changes correctly ([1e566a9](https://github.com/LouisMazel/relizy/commit/1e566a9))
+
+  When changing prerelease preid (e.g. alpha → beta), the function was
+  incorrectly detecting the release type from commits and bumping the
+  version (e.g. 1.0.0-alpha.5 → 1.1.0-beta.0 instead of 1.0.0-beta.0).
+  Now it correctly returns 'prerelease' to keep the version in the same
+  release line while only updating the preid identifier.
+
+### 💅 Refactors
+
+- Rename 'after' hook to 'success' ([a0fe54c](https://github.com/LouisMazel/relizy/commit/a0fe54c))
+
+  The 'after' prefix was ambiguous and could be confused with timing.
+  'success' is more explicit and clearly indicates that the hook is
+  executed when a step completes successfully. This aligns with the
+  existing 'error' hook for failed steps.
+
+- Rename 'after' hook to 'success' ([b238ad5](https://github.com/LouisMazel/relizy/commit/b238ad5))
+
+  The 'after' prefix was ambiguous and could be confused with timing.
+  'success' is more explicit and clearly indicates that the hook is
+  executed when a step completes successfully. This aligns with the
+  existing 'error' hook for failed steps.
+
+### ❤️ Contributors
+
+- LouisMazel ([@LouisMazel](https://github.com/LouisMazel))
+
 ## v0.2.2-beta.1
 
 [compare changes](https://github.com/LouisMazel/relizy/compare/v0.2.2-beta.0...v0.2.2-beta.1)
