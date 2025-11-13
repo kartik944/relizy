@@ -1,5 +1,53 @@
 # Changelog
 
+## v0.2.0-beta.0...v0.2.0
+
+### 🚀 Features
+
+- **relizy:** Add lifecycle hooks system ([20633be](https://github.com/LouisMazel/relizy/commit/20633be))
+
+  Implement comprehensive lifecycle hooks system allowing users to execute
+  custom scripts at specific stages of the release workflow.
+  Hooks support:
+  - String commands (shell scripts)
+  - JavaScript/TypeScript functions
+  - Three hook types: before, after, error
+  - Six lifecycle steps: bump, changelog, commit-and-tag, push, publish, provider-release
+  - Special hook: generate:changelog for customizing changelog generation
+    Add CI environment detection utilities (isInCI, getCIName) to support
+    conditional hook execution in CI/CD pipelines.
+
+- **relizy:** Add lifecycle hooks system ([eedda3a](https://github.com/LouisMazel/relizy/commit/eedda3a))
+
+  Implement comprehensive lifecycle hooks system allowing users to execute
+  custom scripts at specific stages of the release workflow.
+  Hooks support:
+  - String commands (shell scripts)
+  - JavaScript/TypeScript functions
+  - Three hook types: before, after, error
+  - Six lifecycle steps: bump, changelog, commit-and-tag, push, publish, provider-release
+  - Special hook: generate:changelog for customizing changelog generation
+    Add CI environment detection utilities (isInCI, getCIName) to support
+    conditional hook execution in CI/CD pipelines.
+
+### 💅 Refactors
+
+- **relizy:** Improve type definitions and documentation ([ddd2d82](https://github.com/LouisMazel/relizy/commit/ddd2d82))
+
+  Improve TypeScript type definitions and JSDoc documentation across core modules.
+  Export utility types (HookType, HookStep) for external use.
+  Clarify configuration interfaces with better naming and comments.
+
+- **relizy:** Improve type definitions and documentation ([4a3792f](https://github.com/LouisMazel/relizy/commit/4a3792f))
+
+  Improve TypeScript type definitions and JSDoc documentation across core modules.
+  Export utility types (HookType, HookStep) for external use.
+  Clarify configuration interfaces with better naming and comments.
+
+### ❤️ Contributors
+
+- LouisMazel ([@LouisMazel](https://github.com/LouisMazel))
+
 ## v0.1.0...v0.2.0-beta.0
 
 ### 🚀 Features
